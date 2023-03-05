@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+import * as childProcess from 'child_process'
+import fs from 'fs-extra'
+import path from 'path'
+
+async function brazilPath (variable) {
+  return new Promise((resolve, reject) => {
+    let procInfo = {
+      stdout: '',
+      stderr: ''
+    }
+    let proc = childProcess.spawn(
+      'brazil-path',
+      [variable],
+      {
+        stdio: 'pipe'
+      }
+    )
+    proc.stdout.on('data', (data) => {
+      procInfo.stdout += data.toString()
+    })
+    proc.stderr.on('data', (data) => {
+      procInfo.stderr += data.toString()
+    })
+    proc.on('error', (err) => {
+      reject(err)
+    })
+    proc.on('close', (code, signal) => {
+      procInfo.code = code
+      procInfo.signal = signal
+      resolve(procInfo)
+    })
+  })
+}
+
+async function asyncMain () {
+  let proc = await brazilPath('[SentrySSOJavascript]run.runtimefarm')
+  let sentrySSOJavascriptRuntimeFarm = proc.stdout.toString().trim()
+  let sentryJSDir = path.join(sentrySSOJavascriptRuntimeFarm, 'sentryJS')
+  let sentryJSOutDir = path.join(
+    'node_modules',
+    '@amzn',
+    'sentryJS'
+  )
+  await fs.ensureDir(sentryJSOutDir)
+  await fs.copy(
+    sentryJSDir,
+    sentryJSOutDir,
+    {
+      overwrite: true,
+      dereference: true
+    }
+  )
+}
+
+function main () {
+  asyncMain()
+    .then(() => {
+      process.exit(0)
+    })
+    .catch((err) => {
+      console.error(err)
+      process.exit(1)
+    })
+}
+
+if (typeof require !== 'undefined' && require.main === module) {
+  main()
+}
+    </script>
+</body>
+</html>
