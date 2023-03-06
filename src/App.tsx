@@ -35,7 +35,7 @@ function App() {
            <Route path='all-in-one/:whid' element={<HomePage/>}/>
            <Route path='/all-in-one/:whid/:id' element={<ItemDetails />} />
             <Route path="/all-in-one/:whid/outbound" element={<Rad />} />
-            <Route path='/all-in-one/:whid/rad' element={<RAD/>} />
+           
           </Routes>
         </section>
        
