@@ -4,6 +4,10 @@ import { images } from '../../components/constants';
 import { AppWrap, MotionWrap } from '../wrapper';
 import { client } from '../../client';
 import './About.scss';
+import { Badge, Card, Col, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import Picture from '../../media';
 
 const About = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -34,6 +38,12 @@ const About = () => {
       })
       .catch((err) => console.log(err));
   };
+  let whid = window.location.href.split("/")[4];
+  const newWhid = whid.slice(0, 4);
+  console.log(newWhid);
+   let google = "https://rodeo.amazon.com/" + newWhid
+  const [location , setLocation] = useState(`${whid}`);
+console.log(location);
 
   return (
     <>
@@ -51,6 +61,28 @@ const About = () => {
           <a href="tel:+1 (317) 654-7704" className="p-text">+1 (317) 654-7704</a>
         </div>
       </div>
+      <Card  className="box"  style={{ borderRadius:30, border:1 }}>
+                        <Card.Header >
+                            <Row>
+                                <Col md={9}>
+                                    <Card.Title>product.title</Card.Title>
+                                </Col>
+                                <Col md={3}>
+                                    <Badge style={{justifyContent: "center", display: "flex"}} pill  text="light"> product.department </Badge>
+                                </Col>
+                            </Row>
+                        </Card.Header>   
+
+                            <Card.Body style={{padding: "20px", justifyContent: "center", display: "flex"}}>
+                                <Card.Img variant="top" src={Picture.Account} style={{width: 100, height: 100}}/>
+                            </Card.Body>
+
+                        <Card.Footer style={{padding: "10px", justifyContent: "center", display: "flex"}}>
+                            <Link to={`/all-in-one/${whid}/outbound`}>
+                                <Button style={{borderRadius:"50px", backgroundColor:"black", border:"1px solid black", boxShadow:"1px 10px 5px gray"}} variant="primary">Create Ticket</Button>
+                            </Link>
+                        </Card.Footer>
+                        </Card>
     
     </>
   );
