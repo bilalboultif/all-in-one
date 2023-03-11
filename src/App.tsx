@@ -30,7 +30,7 @@ function App() {
 
         <section>
           <Routes>
-          
+          <Route path="/" element={<Login />} />
           <Route path="all-in-one/" element={<Login />} />
            <Route path='all-in-one/:whid' element={<HomePage/>}/>
            <Route path='/all-in-one/:whid/:id' element={<ItemDetails />} />
