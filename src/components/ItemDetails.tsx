@@ -9,6 +9,7 @@ import Typewriter from 'typewriter-effect';
 import NavDetails from './NavDetails';
 import './NavDetails.scss';
 //tsx declaration
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 
 
@@ -148,6 +149,7 @@ const scaleVariants = {
 export default function Details() {
     const {whid} = useParams();
     const {id} = useParams();
+    const {user} = useParams();
    
     const value = useContext(DataContext)
     const [itemsList] = value.itemsList
@@ -165,10 +167,12 @@ export default function Details() {
     const details = itemsList.filter((item: any) => item._id === id)
 const image = itemsList.filter((image: any) => image.id === id)
 console.log(details[0].images)
+
+
     function generateTicketInfo(): void {
       //generate a string that will be used to create a ticket title, if some of the variables are empty then do not include them in the title
-      //example of a ticket title: [WHID] - User - Level - Location - Station - needs help with Item : Issue [FastRiver]
-      let ticketTitle = `[${whid?.toUpperCase()}] - boultifb - ${level} ${location} ${station} needs help with ${details[0].title} : ${issue} [FastRiver]`;
+      //example of a ticket title: [WHID] - User - Level - Location - Station - needs help with Item : Issue
+      let ticketTitle = `[${whid?.toUpperCase()}] ${location}- needs help with ${details[0].title}`;
       //reduce the empty spaces to only 1 if there are multiple empty spaces and replace the spaces with %20 to be used in the url
       ticketTitle = ticketTitle.replace(/\s+/g, ' ').trim().replace(/ /g, "%20");
     console.log(details[0].department)
@@ -185,9 +189,9 @@ console.log(details[0].images)
     
     let topRequest =topDescription+
               '\n\n'+ request +
-              '\n\nTicket created using Fast River v2.0';
+              '\n\nTicket created using t-corp.amazon.com';
 
-      let ticketUrl = `https://t.corp.amazon.com/create/options?title=${ticketTitle}&description=${(topRequest.replace(/\n/g, "%0A").replace(/ /g, "%20"))}&ticket_type=Regular+Ticket&severity=FIVE&category=${details[0].CTI[0].Category}&type=${details[0].CTI[1].Type}&item=${details[0].CTI[2].Item}&group=${details[0].CTI[0].Category}-${whid?.toUpperCase()}&assignee=${assignee}&tags=FastRiver`;
+      let ticketUrl = `https://t.corp.amazon.com/create/options?title=${ticketTitle}&description=${(topRequest.replace(/\n/g, "%0A").replace(/ /g, "%20"))}&ticket_type=Regular+Ticket&severity=FIVE&category=${details[0].CTI[0].Category}&type=${details[0].CTI[1].Type}&item=${details[0].CTI[2].Item}&group=${details[0].CTI[0].Category}-${whid?.toUpperCase()}&assignee=${assignee}&tags`;
 
       window.open(ticketUrl, "_blank");
     }
@@ -240,61 +244,65 @@ console.log(details[0].images)
             <Card.Header style={{fontWeight:"bold"}} >{details[0].title}</Card.Header>
             <Card.Body style={{marginLeft: "20px"}}>
             
-               
+            <FloatingLabel
+        controlId="floatingInput"
+        label="Floor Level: "
+        className="mb-3"
+      >
+        <Form.Control type="text" placeholder="Floor Level: " 
+          onChange={event => setLevel(
+            //if the value is empty ( because was deleted by user ) then set it to empry string
+            event.target.value === "" ? "" :
+            //if the value is not empty then add the word "Floor" before the value
+            "Floor " + event.target.value)}
+            />
+      </FloatingLabel>
+            
+      <FloatingLabel
+        controlId="floatingInput"
+        label="Location: (AFE, Pack, Pick, Stow ...) "
+        className="mb-3"
+      >
+        <Form.Control type="text" placeholder="Location: (AFE, Pack, Pick, Stow ...) " 
+            onChange={event => setLocation(
+              //if the value is empty ( because was deleted by user ) then set it to empry string
+              event.target.value === "" ? "" :
+              //if the value is not empty then add the word "Floor" before the value
+              event.target.value.toUpperCase())}
+            />
+      </FloatingLabel>
 
-                <Form.Floating style={{width: "90%", margin: "10px", marginTop: "30px"}}>
-                <Form.Control
-                  id="floatingInputCustom"
-                  type="text"
-                  onChange={event => setLevel(
-                    //if the value is empty ( because was deleted by user ) then set it to empry string
-                    event.target.value === "" ? "" :
-                    //if the value is not empty then add the word "Floor" before the value
-                    "Floor " + event.target.value)}
-                 />
-                <label htmlFor="floatingInputCustom">Floor Level: </label>
-              </Form.Floating>
-
-              <Form.Floating style={{width: "90%", margin: "10px", marginTop: "30px"}}>
-                <Form.Control
-                  id="floatingInputCustom"
-                  type="text"
-                  onChange={event => setLocation(
-                    //if the value is empty ( because was deleted by user ) then set it to empry string
-                    event.target.value === "" ? "" :
-                    //if the value is not empty then add the word "Floor" before the value
-                    "Location " + event.target.value.toUpperCase())}
-                 />
-                <label htmlFor="floatingInputCustom">Location: (AFE, Pack, Pick, Stow ...) </label>
-              </Form.Floating>
+      <FloatingLabel
+        controlId="floatingInput"
+        label="Station Number:"
+        className="mb-3"
+      >
+        <Form.Control type="text" placeholder="Station Number:" 
+            onChange={event => setStation(
+              //if the value is empty ( because was deleted by user ) then set it to empry string
+              event.target.value === "" ? "" :
+              //if the value is not empty then add the word "Floor" before the value
+              "Station " + event.target.value.toUpperCase())}
+            />
+      </FloatingLabel>
 
  
-              <Form.Floating style={{width: "90%", margin: "10px", marginTop: "30px"}}>
-                <Form.Control
-                  id="floatingInputCustom"
-                  type="text"
-                  onChange={event => setStation(
-                    //if the value is empty ( because was deleted by user ) then set it to empry string
-                    event.target.value === "" ? "" :
-                    //if the value is not empty then add the word "Floor" before the value
-                    "Station " + event.target.value.toUpperCase())}
-                 />
-                <label htmlFor="floatingInputCustom">Station Number:</label>
-              </Form.Floating>
+      <FloatingLabel
+        controlId="floatingInput"
+        label="Asset Or Serial Number"
+        className="mb-3"
+      >
+        <Form.Control type="text" placeholder="Asset Or Serial Number" 
+            onChange={event => setAsset(
+              //if the value is empty ( because was deleted by user ) then set it to empry string
+              event.target.value === "" ? "" :
+              //if the value is not empty then add the word "Floor" before the value
+              "AN/SN " +event.target.value)}
+            />
+      </FloatingLabel>
 
  
-              <Form.Floating style={{width: "90%", margin: "10px", marginTop: "30px"}}>
-                <Form.Control
-                  id="floatingInputCustom"
-                  type="text"
-                  onChange={event => setAsset(
-                    //if the value is empty ( because was deleted by user ) then set it to empry string
-                    event.target.value === "" ? "" :
-                    //if the value is not empty then add the word "Floor" before the value
-                    "AN/SN " +event.target.value)}
-                 />
-                <label htmlFor="floatingInputCustom">Asset Number / Serial Number</label>
-              </Form.Floating>                
+                          
                               <Dropdown >
                               <Dropdown.Toggle variant="info" id="dropdown-basic" style={{width: "80%", marginLeft: "35px", marginTop: "30px"}}>
                               {issue} 
