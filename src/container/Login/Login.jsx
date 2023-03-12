@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { images } from '../../components/constants';
 import { AppWrap, MotionWrap } from '../wrapper';
 import { client } from '../../client';
 import './Login.scss';
 import {useParams} from 'react-router-dom'
+
 
 const Login = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -20,12 +21,7 @@ const Login = () => {
       },
     },
   };
-  const { username, email, message } = formData;
- 
-  const handleChangeInput = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+
 
   const handleSubmit = () => {
     setLoading(true);
@@ -47,7 +43,7 @@ const Login = () => {
   let whid = window.location.href.split("/")[4];
   const newWhid = whid.slice(0, 4);
   console.log(newWhid);
-   let google = "https://rodeo.amazon.com/" + newWhid
+   let google = "http://fcmenu-iad-regionalized.corp.amazon.com/basic/login" 
   const [location , setLocation] = useState(`${whid}`);
 console.log(location);
   return (
@@ -62,7 +58,7 @@ console.log(location);
         <div className="badge-cmp app__flex">
           <span>👋</span>
           <div style={{ marginLeft: 20 }}>
-            <p className="p-text">Hello, I am</p>
+            <p className="p-text">Hello, This is</p>
             <h1 className="head-text">{
             newWhid
           }</h1>
@@ -70,8 +66,9 @@ console.log(location);
         </div>
 
         <div className="tag-cmp app__flex">
-          <p className="p-text">Outbound</p>
-          <p className="p-text">Tools</p>
+          <p className="p-text">To access</p>
+          <p className="p-text">Fc menu Tools</p>
+          <p className="p-text">Click on Fc Login</p>
         </div>
       </div>
     </motion.div>
@@ -83,7 +80,7 @@ console.log(location);
       transition={{ duration: 0.5, delayChildren: 0.5 }}
       className="app__header-img"
     >
-      <img src={images.delivery} alt="profile_bg" />
+      <img src={images.Fclogin} alt="profile_bg"  id="profile-login" />
       <motion.img
         whileInView={{ scale: [0, 1] }}
         transition={{ duration: 1, ease: 'easeInOut' }}
@@ -106,39 +103,18 @@ console.log(location);
     </motion.div>
     
   </div>
-  <h3 className="head-text">{newWhid} Outbound Shipping orders </h3>
+  <h3 className="head-text">Login {newWhid}</h3>
+
 
 <div className="app__footer-cards">
   <div className="app__footer-card " >
-    <img src={images.slack} alt="email" />
-    <a href={google} target='_blank' className="p-text">Rodeo</a>
+    <img src={images.Badge} alt="email" />
+    <a href={google} target='_blank' className="p-text">Fc  Login</a>
     
   </div>
-  <div className="app__footer-card " >
-    <img src={images.slack} alt="email" />
-    <a href="https://amzn-operations.slack.com/archives/C04R7MWPK45" className="p-text">Pslip</a>
-    
-  </div>
-  <div className="app__footer-card " >
-    <img src={images.slack} alt="email" />
-    <a href="https://amzn-operations.slack.com/archives/C04R7MWPK45" className="p-text">All amazonians IND1</a>
-    
-  </div>
-  <div className="app__footer-card " >
-    <img src={images.slack} alt="email" />
-    <a href="https://amzn-operations.slack.com/archives/C04R7MWPK45" className="p-text">All amazonians IND1</a>
-    
-  </div>
-  <div className="app__footer-card " >
-    <img src={images.slack} alt="email" />
-    <a href="https://amzn-operations.slack.com/archives/C04R7MWPK45" className="p-text">All amazonians IND1</a>
-    
-  </div>
+ 
   
-  <div className="app__footer-card">
-    <img src={images.mobile} alt="phone" />
-    <a href="tel:+1 (317) 654-7704" className="p-text">+1 (317) 654-7704</a>
-  </div>
+  
 </div>
     
     </>
