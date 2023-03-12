@@ -36,6 +36,8 @@ import typescript from '../assets/typescript.png'
 import vue from '../assets/vue.png'
 import slack from '../assets/slack.png'
 import delivery from '../assets/delivery.png'
+import Fclogin from '../assets/Fclogin.png'
+import Badge from '../assets/Badge.png'
 
 export default {
     delivery,
@@ -75,5 +77,7 @@ export default {
     skype,
     spotify,
     typescript,
-    vue
+    vue,
+    Fclogin,
+    Badge
 }
