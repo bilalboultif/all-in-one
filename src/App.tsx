@@ -11,6 +11,8 @@ import Login from './components/Login'
 import RAD from './components/Rad'
 import { About, Footer, Header, Skills, Work } from './container';
 import HomePage from './HomePage';
+import Outbound from './container/Outbound/Outbound';
+import Building from './components/Building';
 
 
 
@@ -34,8 +36,8 @@ function App() {
           <Route path="all-in-one/" element={<Login />} />
            <Route path='all-in-one/:whid' element={<HomePage/>}/>
            <Route path='/all-in-one/:whid/:id' element={<ItemDetails />} />
-            <Route path="/all-in-one/:whid/outbound" element={<RAD />} />
-            <Route path="/all-in-one/:whid/rad" element={<RAD />} />
+   
+            <Route path="/all-in-one/:whid/rad" element={<Building />} />
            
           </Routes>
         </section>
@@ -99,4 +101,3 @@ function Main() {
     </>
   )
 }
-

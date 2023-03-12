@@ -81,13 +81,14 @@ section .bilal{
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #5d448f; 
+  background: #45208f; 
 }
 
 .box, img {
     margin-left: 0px;
     width: 200px;
     height: 200px;
+    border-radius: 50%;
 }
 .box, h3 {
     text-align: center;
@@ -144,11 +145,16 @@ body {
 #floatingInputCustom {
  width: 300px;
   height: 15px;
-
+ text-decoration: navy;
+}
+#floatingInputCustom:hover{
+  background-color: #ffffff;
+ 
 }
 #locationButton {
   width: 100px;
-  height: 1px;
+height: 0;
+  padding: 20px;
 }
  .card-body {
 padding-top: 10px;
@@ -412,4 +418,17 @@ margin-top: 150px;
 }
 .p-text {
   color: bisque;
+}
+
+
+
+#locationButton:active {
+  background-color: #000000;
+
+}
+
+#locationButton:hover {
+  padding: 20px;
+  background-color: #000000;
+  text-decoration: #000000;
 }

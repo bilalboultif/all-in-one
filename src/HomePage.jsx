@@ -7,9 +7,11 @@ import Navbar from './components/Navbar'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Items from './components/item';
 import ItemDetails from './components/ItemDetails';
-import Login from './components/Login'
+
 import RAD from './components/Rad'
-import { About, Footer, Header, Skills, Work } from './container';
+import { About, Footer, Header, Outbound,Login } from './container';
+import Inbound from './container/Skills/Skills';
+
 
 
 const HomePage = () => {
@@ -27,10 +29,11 @@ const HomePage = () => {
       <Navbar />
        <Header />
        <About />
-        <Footer />
-       
-        <Skills />
-       
+        
+       <Outbound/>
+      <Inbound/>
+      <Footer />
+       <Login/>
    
         </React.Fragment>
 
