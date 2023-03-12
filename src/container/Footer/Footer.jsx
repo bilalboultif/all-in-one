@@ -36,6 +36,7 @@ const Footer = () => {
       .catch((err) => console.log(err));
   };
 
+
   return (
     <>
       <h3 className="head-text">Any question /issue & chat with us</h3>
