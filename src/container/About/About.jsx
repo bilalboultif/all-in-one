@@ -64,12 +64,8 @@ console.log(location);
       <Card  className="box"  style={{ borderRadius:30, border:1 }}>
                         <Card.Header >
                             <Row>
-                                <Col md={9}>
-                                    <Card.Title>product.title</Card.Title>
-                                </Col>
-                                <Col md={3}>
-                                    <Badge style={{justifyContent: "center", display: "flex"}} pill  text="light"> product.department </Badge>
-                                </Col>
+                              
+                               
                             </Row>
                         </Card.Header>   
 
@@ -78,7 +74,7 @@ console.log(location);
                             </Card.Body>
 
                         <Card.Footer style={{padding: "10px", justifyContent: "center", display: "flex"}}>
-                            <Link to={`/all-in-one/${whid}/outbound`}>
+                            <Link to={`/all-in-one/${whid}/rad`}>
                                 <Button style={{borderRadius:"50px", backgroundColor:"black", border:"1px solid black", boxShadow:"1px 10px 5px gray"}} variant="primary">Create Ticket</Button>
                             </Link>
                         </Card.Footer>
