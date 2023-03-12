@@ -5,6 +5,11 @@ import { AppWrap, MotionWrap } from '../wrapper';
 import { client } from '../../client';
 import './Header.scss';
 import {useParams} from 'react-router-dom'
+import { useEffect } from 'react';
+import { Badge, Card, Col, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import Picture from '../../media';
 
 const Header = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -26,6 +31,46 @@ const Header = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
+ 
+function MyComponent() {
+  const [userData, setUserData] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch('https://maxis-service-prod-dub.amazon.com/users/whoami', {
+          credentials: 'include', // include cookies in request (if applicable)
+          headers: {
+            'Content-Type': 'application/json', // set request content type
+          },
+        });
+        const data = await response.json();
+        setUserData(data);
+      } catch (error) {
+        setError(error);
+      }
+    };
+    fetchUserData();
+  }, []);
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  if (!userData) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div>
+      <h2>User Data</h2>
+      <p>Name: {userData.username}</p>
+      <p>Email: {userData.email}</p>
+    </div>
+  );
+}
 
   const handleSubmit = () => {
     setLoading(true);
@@ -62,16 +107,16 @@ console.log(location);
         <div className="badge-cmp app__flex">
           <span>👋</span>
           <div style={{ marginLeft: 20 }}>
-            <p className="p-text">Hello, I am</p>
+            <p className="p-text">Welcome to</p>
             <h1 className="head-text">{
             newWhid
           }</h1>
           </div>
         </div>
-        <img src={images.delivery} alt="profile_bg" />
+        
         <div className="tag-cmp app__flex">
-          <p className="p-text">Outbound</p>
-          <p className="p-text">Tools</p>
+          <p className="p-text">All the info</p>
+          <p className="p-text">of the Building</p>
         </div>
       </div>
     </motion.div>
@@ -106,32 +151,62 @@ console.log(location);
     </motion.div>
     
   </div>
-  <h3 className="head-text">{newWhid} Outbound Shipping orders </h3>
+  <div>
+  <motion.div
+      whileInView={{ opacity: [0, 1] }}
+      border={{ opacity: [0, 1] }}
+      borderRadius={{ opacity: [0, 1] }}
+      transition={{ duration: 0.5, delayChildren: 0.5 }}
+      className="app__header-img"
+    >
+      <img src={images.bolt} alt="profile_bg" />
+      <motion.img
+        whileInView={{ scale: [0, 1] }}
+        transition={{ duration: 1, ease: 'easeInOut' }}
+        src={images.circle}
+        alt="profile_circle"
+        className="overlay_circle"
+      />
+    </motion.div>
+  
+    <h3 className="head-text">{newWhid} Building</h3>
+   
+                     
+
+                           
+
+                            <Link to={`/all-in-one/${whid}/rad`}>
+                                <Button style={{borderRadius:"50px", backgroundColor:"black", border:"1px solid black", boxShadow:"1px 10px 5px gray"}} variant="primary">Site Info</Button>
+                            </Link>
+                       
+                      
+  </div>
+  
 
 <div className="app__footer-cards">
   <div className="app__footer-card " >
     <img src={images.about01} alt="email" />
-    <a href={google} target='_blank' className="p-text">Rodeo</a>
+    <a href={google} target='_blank' className="p-text">HR</a>
     
   </div>
   <div className="app__footer-card " >
     <img src={images.slack} alt="email" />
-    <a href="https://pslip-web-na.amazon.com/" className="p-text">Pslip</a>
+    <a href="https://pslip-web-na.amazon.com/" className="p-text">AMcare</a>
     
   </div>
   <div className="app__footer-card " >
     <img src={images.slack} alt="email" />
-    <a href="https://amzn-operations.slack.com/archives/C04R7MWPK45" className="p-text">All amazonians IND1</a>
+    <a href="https://amzn-operations.slack.com/archives/C04R7MWPK45" className="p-text">Learning</a>
     
   </div>
   <div className="app__footer-card " >
     <img src={images.slack} alt="email" />
-    <a href="https://amzn-operations.slack.com/archives/C04R7MWPK45" className="p-text">All amazonians IND1</a>
+    <a href="https://amzn-operations.slack.com/archives/C04R7MWPK45" className="p-text">Safety</a>
     
   </div>
   <div className="app__footer-card " >
     <img src={images.slack} alt="email" />
-    <a href="https://amzn-operations.slack.com/archives/C04R7MWPK45" className="p-text">All amazonians IND1</a>
+    <a href="https://amzn-operations.slack.com/archives/C04R7MWPK45" className="p-text">RME</a>
     
   </div>
   
@@ -140,7 +215,10 @@ console.log(location);
     <a href="tel:+1 (317) 654-7704" className="p-text">+1 (317) 654-7704</a>
   </div>
 </div>
-    
+<div>
+   <MyComponent />
+</div>
+  
     </>
   );
 };
