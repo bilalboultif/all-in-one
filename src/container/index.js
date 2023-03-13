@@ -1,4 +1,4 @@
-import About from './About/About';
+import RME from './RME/RME';
 import Footer from './Footer/Footer';
 import Header from './Header/Header';
 import Skills from './Skills/Skills';
@@ -8,7 +8,7 @@ import Login from './Login/Login';
 import Outbound from './Outbound/Outbound';
 
 export {
-  About,
+  RME,
   Footer,
   Header,
   Skills,

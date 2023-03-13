@@ -111,27 +111,27 @@ console.log(location);
 <div className="app__footer-cards">
   <div className="app__footer-card " >
     <img src={images.about01} alt="email" />
-    <a href={google} target='_blank' className="p-text">Rodeo</a>
+    <a href={google} target='_blank' className="p-text">Pick</a>
     
   </div>
   <div className="app__footer-card " >
-    <img src={images.slack} alt="email" />
-    <a href="https://pslip-web-na.amazon.com/" className="p-text">Pslip</a>
+    <img src={images.about02} alt="email" />
+    <a href="https://pslip-web-na.amazon.com/" className="p-text">AFE</a>
     
   </div>
   <div className="app__footer-card " >
-    <img src={images.slack} alt="email" />
-    <a href="https://amzn-operations.slack.com/archives/C04R7MWPK45" className="p-text">All amazonians IND1</a>
+    <img src={images.api} alt="email" />
+    <a href="https://amzn-operations.slack.com/archives/C04R7MWPK45" className="p-text">Singles</a>
     
   </div>
   <div className="app__footer-card " >
-    <img src={images.slack} alt="email" />
-    <a href="https://amzn-operations.slack.com/archives/C04R7MWPK45" className="p-text">All amazonians IND1</a>
+    <img src={images.git} alt="email" />
+    <a href="https://amzn-operations.slack.com/archives/C04R7MWPK45" className="p-text">Multis</a>
     
   </div>
   <div className="app__footer-card " >
-    <img src={images.slack} alt="email" />
-    <a href="https://amzn-operations.slack.com/archives/C04R7MWPK45" className="p-text">All amazonians IND1</a>
+    <img src={images.about01} alt="email" />
+    <a href="https://amzn-operations.slack.com/archives/C04R7MWPK45" className="p-text">Vendor Return</a>
     
   </div>
   

@@ -9,8 +9,9 @@ import Items from './components/item';
 import ItemDetails from './components/ItemDetails';
 
 import RAD from './components/Rad'
-import { About, Footer, Header, Outbound,Login } from './container';
+import { Footer, Header, Outbound,Login } from './container';
 import Inbound from './container/Skills/Skills';
+import RME from './container/RME/RME';
 
 
 
@@ -28,7 +29,7 @@ const HomePage = () => {
      
       <Navbar />
        <Header />
-       <About />
+       <RME />
         
        <Outbound/>
       <Inbound/>

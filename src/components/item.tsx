@@ -1,5 +1,8 @@
 import React, {useContext, useEffect, useState} from 'react'
 import {DataContext} from './DataProvider'
+
+import Typewriter from 'typewriter-effect';
+
 import {Link, useParams} from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -8,7 +11,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
-
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Radio from '../media/Radio.jpg';
 import CCTV from '../media/CCTV-Camera.jpg';
 import CLOCK from '../media/Clock-In.jpg';
@@ -170,16 +173,35 @@ export default function Items() {
 
         <Container style = {{minWidth: "85%", justifyContent: "center", alignItems: "center", display: "flex", flexDirection: "column"}}>
 
-        <Form.Floating style={{width: "60%", margin: "30px"}}>
-            <Form.Control
-              id="floatingInputCustom2"
-              type="text"
-              style={{backgroundColor: "rgba(42, 30, 30, 0.472)", color: "white", marginBottom:30, borderRadius:30, border:1}}
-              placeholder="Search for an item, department, tag, workstation etc."
-              onChange={search}
-              />
-       
-          </Form.Floating>
+        
+          <FloatingLabel
+          style={{width: "60%", margin: "30px" , color:"yellow"}}
+        controlId="floatingInput"
+        label={
+            <Typewriter 
+            onInit={(typewriter) => {
+              typewriter.typeString('Search for an item, device, issue etc.')
+             
+                .pauseFor(2500)
+                .deleteAll()
+                .typeString('Discribe your issue/request and location')
+                .deleteAll()
+                .typeString('submit and IT will be fix')
+                .start();
+            }}
+          />
+        }
+        className="mb-3"
+      >
+        <Form.Control
+          id="floatingInputCustom2"
+          type="text"
+          style={{backgroundColor: "rgba(42, 30, 30, 0.472)", color: "white", marginBottom:30, borderRadius:30, border:1}}
+          placeholder="Search for an item, device, issue etc."
+          onChange={search} 
+           
+            />
+      </FloatingLabel>
             <Row  className="scroll-container"  id="assets" Row >
                 {
                 filteredItems.map( (product: Item) => ( 

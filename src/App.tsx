@@ -9,7 +9,7 @@ import Items from './components/item';
 import ItemDetails from './components/ItemDetails';
 import Login from './components/Login'
 import RAD from './components/Rad'
-import { About, Footer, Header, Skills, Work } from './container';
+
 import HomePage from './HomePage';
 import Outbound from './container/Outbound/Outbound';
 import Building from './components/Building';
