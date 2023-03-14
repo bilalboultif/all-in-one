@@ -1,7 +1,6 @@
 {
   "name": "my-app",
   "version": "0.1.0",
-  "homepage": "http://localhost:3000/all-in-one",
   "private": true,
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
@@ -17,8 +16,6 @@
     "@types/react-router-dom": "^5.3.3",
     "bootstrap": "^5.1.3",
     "framer-motion": "^10.0.0",
-    "harmony": "^2.0.0",
-    "harmony-cli": "^0.0.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.0.2",
     "react-dom": "^18.2.0",
