@@ -175,7 +175,7 @@ console.log(location);
 
                            
 
-                            <Link to={`/all-in-one/${whid}/rad`}>
+                            <Link to={`/all-in-one/${newWhid}/rad`}>
                                 <Button style={{borderRadius:"50px", backgroundColor:"black", border:"1px solid black", boxShadow:"1px 10px 5px gray"}} variant="primary">Site Info</Button>
                             </Link>
                        

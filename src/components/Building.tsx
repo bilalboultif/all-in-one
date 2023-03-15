@@ -4,10 +4,11 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 
 import { useNavigate , useParams} from "react-router-dom";
+import { images } from './constants';
 
 
 function Building() {
-    let whid = window.location.href.split("/")[4];
+    const whid = window.location.href.split("/")[4];
     const newWhid = whid.slice(0, 4);
     console.log(newWhid);
      let google = "https://rodeo.amazon.com/" + newWhid
@@ -24,83 +25,44 @@ function Building() {
         
 
       }
-      const linkArray = [`https://inside.amazon.com/en/MyWorkplace/FC/NAOps/NACFTSort/US${location}/Pages/${location}.aspx`,
-      `https://inside.amazon.com/en/MyWorkplace/FC/NAOps/NACFMixedSort/us${locationL}/Pages/${location}.aspx`,
-      `https://inside.amazon.com/en/MyWorkplace/FC/NAOps/NACFNonSorts/US${location}/Pages/default.aspx`
-      ];
+     
   
        
-  const LinkList = () => {
-      const [validLinks, setValidLinks] = useState<string[]>([]);
-       const  links: Array<string> = [];
-      useEffect(() => {
-        const checkLinks = async () => {
-         
-    
-          for (const link of linkArray) {
-            try {
-              const response = await fetch(link);
-              if (response.ok) {
-                links.push(link);
-              }
-            } catch (error) {
-              console.log(`Error checking link: ${link}`, error);
-            }
-          }
-    
-          setValidLinks(links);
-        };
-    
-        checkLinks();
-      }, []);
-    
-      return (
-        <div>
-          {validLinks.map((link) => (
-            <a href={link}>{link}</a>
-          ))}
-        </div>
-      );
-    };
-      const MyComponent = () => {
-        const [showLinks, setShowLinks] = useState(false);
-      
-        const handleButtonClick = () => {
-          setShowLinks(true);
-        };
-      
-        return (
-          <div>
-            <button onClick={handleButtonClick}>Show Links</button>
-            {showLinks && (
-              <React.Fragment>
-                <LinkList />
-              </React.Fragment>
-            )}
-          </div>
-        );
-      };
+
   return (
     <Container style = {{minWidth: "80%", justifyContent: "center", alignItems: "center", display: "flex", flexDirection: "column", marginTop: "50px", maxHeight: "100%"
         }}>
-    <Card style={{ width: '30rem' }}>
+    <Card className='visibility' id={'visibility'}  style={{ width: '30rem' , color:"white",borderRadius:"10px 50px"}}>
       <Card.Body>
         <Card.Title>Building</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">Global Rapid Asset Deployment</Card.Subtitle>
+        <Card.Subtitle className="mb-2 text-muted">Amazon Warehouse, Fulfillment Center</Card.Subtitle>
         <Card.Text style={{marginTop: "50px", marginBottom: "30px"}}>
-          Please click on Wiki page for more information or go directly to River Workflow
+          Please click on inside amazon for more information about the building or go directly to wiki page for the policies 
         </Card.Text>
 
       </Card.Body>
-      <MyComponent />
-       <Button style={{margin: "50px"}}variant="primary" href={`https://inside.amazon.com/en/MyWorkplace/FC/NAOps/NACFMixedSort/us${locationL}/Pages/${location}.aspx`} target="_new"
-      >Or this Page</Button>
-      <Button style={{margin: "50px"}}variant="primary" href="https://river.amazon.com/?org=it_help&buildingId=*&q0=a784d9a3-02aa-47c1-a89b-71fb60a8b658" target="_new">River Workflow</Button>
-      <Button style={{margin: "50px"}}variant="danger" onClick={() => handleBack()}>Back</Button>
-
-
+      
+      
+<>
+<div className="app__footer-cards">
+  <div className="app__footer-card " >
+    <img src={images.about01} alt="email" />
+    <a href="https://search.amazon.work/search?country=us&language=en&k=${locationL}&r=true&q=${locationL} &page=1&fromRedirect=1" target='_blank' className="p-text">Inside Amazon</a>
+    
+  </div>
+  <div className="app__footer-card " >
+    <img src={images.slack} alt="email" />
+    <a href="https://pslip-web-na.amazon.com/" className="p-text">Wiki Page</a>
+    
+  </div>
+  
+  <Button style={{margin: "50px", backgroundColor:"black"}}variant="danger" onClick={() => handleBack()}>Back</Button>
+ 
+</div>
+</>
 
     </Card>
+    
     </Container>
   );
 }
