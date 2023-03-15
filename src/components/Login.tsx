@@ -8,6 +8,7 @@ import Col from 'react-bootstrap/Col'
 import React, { useState, useEffect } from 'react';
 import Images from '../media/index'
 import {Link} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 // import Cookies from 'js-cookie';
 import { fileURLToPath } from 'url';
 import { images } from './constants';
@@ -27,6 +28,11 @@ const [visible,setVisible] = useState(false)
   const URL = '/all-in-one/' + location;
 console.log(location)
 console.log(URL)
+const navigate = useNavigate();
+
+const handleClick = () => {
+  navigate('/all-in-one/' + location);
+}
 
   const visibility = document.getElementById('visibility')
   
@@ -86,7 +92,7 @@ console.log(URL)
 
               <Link style={{ width: "70%", marginLeft: "-35px", marginTop: "20px", height: "40px"}} to={`/all-in-one/${location}`}>
                   {/* <Button style={{marginRight: "10px"}} variant="success" >Ok</Button> */}
-                  <Button  onClick={() => window.open(URL)} variant="success" target='_parent' style={{ marginTop:10, backgroundColor:"black",border:"1px solid black", borderRadius:10,boxShadow: "0px 0px 10px"}}> Ok </Button>
+                  <Button onClick={handleClick} variant="success" target='_parent' style={{ marginTop:10, backgroundColor:"black",border:"1px solid black", borderRadius:10,boxShadow: "0px 0px 10px"}}> Ok </Button>
 
                 </Link>
 
@@ -128,7 +134,7 @@ console.log(URL)
     <Button style={{ margin: "50px" }} variant="success" >Continue</Button>
 </Link> */}
 
-<Button style={{margin:50,marginLeft:0, borderRadius:50, backgroundColor:"navy", border:"1px solid navy", boxShadow:"1px 1px 5px"}}  onClick={() => window.open(URL,"_self")} variant="success" > Continue </Button>
+<Button style={{margin:50,marginLeft:0, borderRadius:50, backgroundColor:"navy", border:"1px solid navy", boxShadow:"1px 1px 5px"}}  onClick={handleClick} variant="success" > Continue </Button>
 
 
       </Card>
